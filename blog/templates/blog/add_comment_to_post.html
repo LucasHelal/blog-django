@@ -1,9 +1,20 @@
 {% extends 'blog/base.html' %}
 
+{% load material_form %}
+
 {% block content %}
-    <h1>New comment</h1>
-    <form method="POST" class="post-form">{% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="save btn btn-default">Send</button>
-    </form>
+    <div class="card posts">
+        <form method="POST" class="post-form">{% csrf_token %}
+            <div class="card-content">
+                <div class="card-title"><h2 class="form-title">New Comment<h2></div>
+                {% form form=form %}{% endform %}
+            </div>
+
+            <div class="card-action">
+                <div class="right-align">
+                    <button type="submit" title="New post" class="btn-flat pull-right">Enviar</button>
+                </div>
+            </div>
+        </form>
+    </div>
 {% endblock %}
