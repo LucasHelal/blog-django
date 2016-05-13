@@ -3,22 +3,34 @@
 {% load material_form %}
 <html>
     <head>
-        <title>Django Girls blog</title>
+        <title>Django Helal blog</title>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
         {% include 'material/includes/material_css.html' %}
+        <script src="{% static 'material/js/jquery-2.2.0.js' %}"></script>
         {% include 'material/includes/material_js.html' %}
 
         <link rel="stylesheet" href="{% static 'css/blog.css' %}">
     </head>
     <body>
-      <div class="page-header">
-          {% if user.is_authenticated %}
-          <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
-          <a href="{% url 'post_draft_list' %}" class="top-menu"><span class="glyphicon glyphicon-edit"></span></a>
-          {% else %}
-          <a href="{% url 'django.contrib.auth.views.login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
-          {% endif %}
-          <h1><a href="{% url 'blog.views.post_list' %}">Django Girls</a></h1>
+      <div class="navbar-fixed">
+        <nav>
+          <div class="nav-wrapper blue">
+            <a href="{% url 'blog.views.post_list' %}" class="brand-logo">Lucas Helal - Blog/Django</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+              {% if user.is_authenticated %}
+              <li><a href="{% url 'post_new' %}" class="top-menu"> <i class="medium material-icons">add</i> </a></li>
+              <li><a href="{% url 'post_draft_list' %}" class="top-menu"> <i class="medium material-icons">mode_edit</i> </a></li>
+              <li> <a href="{% url 'django.contrib.auth.views.logout' %}" class="top-menu"> <i class="material-icons">exit_to_app</i></li>
+              {% else %}
+              <li><a href="{% url 'django.contrib.auth.views.login' %}" class="top-menu"> <i class="medium material-icons">perm_identity
+</i> </a></li>
+            {% endif %}
+            </ul>
+          </div>
+        </nav>
       </div>
+
       <div class="content">
           <div class="row">
               <div class="col-md-8">
@@ -27,5 +39,6 @@
               </div>
           </div>
       </div>
+
   </body>
 </html>
